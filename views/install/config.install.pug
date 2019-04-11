@@ -1,0 +1,38 @@
+extends layout.install.pug
+
+block content  
+  div(class="install")
+      div(class="content md")
+        div(class="panel panel-default install-panel")
+            div(class="panel-body")
+                form(class="form-horizontal install-form")
+                    div(class="page-header")
+                        div(class="heading")= "MongoDB 管理员配置"
+                    div(class="form-group")
+                        label(class="col-sm-3 control-label")= "* 网站名称："
+                        div(class="col-sm-9")
+                            input(class="form-control" name="web_name")
+                    div(class="form-group")
+                        label(class="col-sm-3 control-label")= "* 管理员邮箱："
+                        div(class="col-sm-9")
+                            input(class="form-control" name="email" placeholder='123456@qq.com')
+                    div(class="form-group")
+                        label(class="col-sm-3 control-label")= "* 昵称："
+                        div(class="col-sm-9")
+                            input(class="form-control" name="name" placeholder='超级管理员' value='超级管理员')
+                    div(class="form-group")
+                        label(class="col-sm-3 control-label")= "* 登录密码："
+                        div(class="col-sm-9")
+                            input(class="form-control" name="pwd" type='password')
+                    div(class="form-group")
+                        label(class="col-sm-3 control-label")= "* 确认登录密码："
+                        div(class="col-sm-9")
+                            input(class="form-control" name="re_pwd" type='password')
+                    div(class="pull-right")
+                        button(class="btn btn-primary" type="button" id="add_user")= "创建用户"
+            script(src="../javascripts/db.install.js")
+                    
+
+
+
+        

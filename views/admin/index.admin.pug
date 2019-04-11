@@ -1,0 +1,13 @@
+extends layout.install.pug
+
+block content  
+  div(class="install")
+      div(class="content md")
+        include db.install.pug
+
+
+  script(src="../javascripts/admin.js")
+  //- h1= title
+  //- p Welcome to #{title}
+
+//-   include db.config

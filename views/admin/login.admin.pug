@@ -1,0 +1,16 @@
+extends layout.admin.pug
+
+block content  
+    div(class="form-group")
+        form(class="form-horizontal install-form")
+            div(class="form-group")
+                    label(class="col-sm-3 control-label")= "邮箱："
+                    div(class="col-sm-9")
+                        input(class="form-control" name="username" placeholder='localhost' value='123456@qq.com')
+            div(class="form-group")
+                    label(class="col-sm-3 control-label")= "密码："
+                    div(class="col-sm-9")
+                        input(class="form-control" name="pwd" type='password')
+            div(class="pull-right")
+                    button(class="btn btn-primary" type="button" id="login")= "登录"
+        script(src="../javascripts/admin.js")

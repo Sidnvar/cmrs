@@ -1,0 +1,33 @@
+block db.install
+    div(class="panel panel-default install-panel")
+        div(class="panel-body")
+            form(class="form-horizontal install-form")
+                div(class="page-header")
+                    div(class="heading")= "MongoDB 数据库配置"
+                div(class="form-group")
+                    label(class="col-sm-3 control-label")= "* 数据库主机："
+                    div(class="col-sm-9")
+                        input(class="form-control" name="db_host" placeholder='localhost' value='localhost')
+                div(class="form-group")
+                    label(class="col-sm-3 control-label")= "* 数据库端口："
+                    div(class="col-sm-9")
+                        input(class="form-control" name="db_port" placeholder='27017' value='27017')
+                div(class="form-group")
+                    label(class="col-sm-3 control-label")= "* 数据库名："
+                    div(class="col-sm-9")
+                        input(class="form-control" name="db_name")
+                div(class="form-group")
+                    label(class="col-sm-3 control-label")= "* 数据库用户名："
+                    div(class="col-sm-9")
+                        input(class="form-control" name="db_user")
+                div(class="form-group")
+                    label(class="col-sm-3 control-label")= "* 数据库密码："
+                    div(class="col-sm-9")
+                        input(class="form-control" name="db_pwd" type='password')
+                div(class="pull-right")
+                    button(class="btn btn-primary" type="button" id="link_db")= "连接数据库"
+                    
+
+
+
+        
