@@ -3,7 +3,7 @@ const MongoClient = mongo.MongoClient
 const test = require('assert')
 const fs = require('fs')
 const path = require('path')
-
+const ObjectID = require('mongodb').ObjectID;
 class dbService {
     constructor(config){
         this.db_host = config.db_host;
@@ -97,10 +97,31 @@ class dbService {
             //     resolve(users)
             //     // console.log(users)
             // }
-            _db.collection('users').findOne({"user_name": formData.username}, function(err, users) {
+            _db.collection('users').findOne({"email": formData.username}, async (err, user) => {
                 if(err) return reject(err);
-                resolve(users)
+                resolve(user)
             })
+        })
+    }
+
+    /**
+     * 获取后台账户
+     * 
+     */
+    getAdminUser(){
+        let _db = this.mongoDb.db(this.db_name)
+
+        return new Promise((resolve, reject) => {
+            _db.collection('users').find({}).toArray(function (err, result){
+                // console.log(result)
+                if(err) return reject(err);
+                resolve(result)
+            });
+            // _db.collection('users').findOne({}, function(err, users){
+            //     if(err) return reject(err);
+            //     console.log(users)
+            //     resolve(users)
+            // })
         })
     }
 
@@ -110,6 +131,7 @@ class dbService {
      *        {email, name, pwd, re_pwd, role}
      */
     addAdminUser(options){
+        // console.log(options)
         let _db = this.mongoDb.db(this.db_name)
 
         return new Promise((resolve, reject) => {
@@ -129,12 +151,42 @@ class dbService {
 
     /**
      * 删除后台账户
-     * @param {String} id
+     * @param {String} _id
      */
-    delAdminUser(id){
+    dropAdminUser(_id){
+        let _db = this.mongoDb.db(this.db_name);
 
+        let _sql = {'_id': ObjectID(_id)}
+
+        return new Promise((resolve, reject) => {
+            _db.collection('users').deleteOne(_sql, {}, (err, result) => {
+                if(err) throw reject(err);
+                resolve();
+            })
+        });
     }
 
+    /**
+     * 获取角色
+     * @param {string} _id   
+     */
+    getRole(_id){
+        let _db = this.mongoDb.db(this.db_name)
+        let _sql = {}
+        if(_id){
+            _sql = {'_id': ObjectID(_id)}
+        }
+
+        // console.log(_sql)
+        return new Promise((resolve, reject) => {
+            _db.collection('roles').find(_sql).toArray(function (err, result){
+                // console.log(result)
+                if(err) return reject(err);
+                resolve(result)
+            });
+        })
+    }
+    
     /**
      * 添加新角色
      * @param {Object}
@@ -164,8 +216,17 @@ class dbService {
      * 删除角色
      * @param {Object}
      */
-    delRole(id){
+    dropRole(_id){
+        let _db = this.mongoDb.db(this.db_name);
 
+        let _sql = {'_id': ObjectID(_id)}
+
+        return new Promise((resolve, reject) => {
+            _db.collection('roles').deleteOne(_sql, {}, (err, result) => {
+                if(err) throw reject(err);
+                resolve();
+            })
+        });
     }
     
 }

@@ -1,0 +1,72 @@
+extends layout.admin.pug
+
+block content  
+  include nav.admin.pug
+  
+  div(class="page view clearfix")
+    div(class="page-header clearfix")
+      ol(class="heading")
+        li
+          a= title
+    div(class="row")
+        div(class="col-xs-8")
+            div(class="panel panel-default")
+                div(class="panel-body table-responsive")
+                    table(class="table table-hover")
+                        thead(class="text-center")
+                            tr
+                                th= "序号"
+                                th= "名称"
+                                th= "备注"
+                                th= "角色"
+                        tbody(class="text-center")
+                            - let list = users
+                            - for(let  i = 0; i < list.length; i++)
+                                tr
+                                    td= i+1
+                                    td= list[i]['email']
+                                    td= list[i]['remark']
+                                    td= list[i].roles['_text']
+                                    //- td= "无/可读/读写"
+                                    //- td(class="role-group") 
+                                    //-     div(class="btn-group btn-group-xs" role="group")
+                                    //-         label()
+                                    //-             input(type="radio" name="role" value="0" checked)
+                                    //-             = "无"
+                                    //-         label()
+                                    //-             input(type="radio" name="role" value="1")
+                                    //-             = "可读"
+                                    //-         label()
+                                    //-             input(type="radio" name="role" value="2")
+                                    //-             = "读写"
+        div(class="col-xs-4")
+            div(class="panel panel-default")
+                div(class="panel-body table-responsive")
+                    table(class="table table-hover")
+                        thead(class="text-center")
+                            tr
+                                th="添加用户"
+                        tbody(class="text-center")
+                            tr
+                                td
+                                    label()= "用户邮箱:"
+                                    input(name="email")
+                            tr
+                                td
+                                    label()= "密码:"
+                                    input(name="pwd" type='password')
+                            tr
+                                td
+                                    label()= "备注:"
+                                    input(name="remark")
+                            tr
+                                td
+                                    label()= "角色:"
+                                    select(id="role")
+                                        - let olist = roles
+                                        - for(let i = 0; i < olist.length; i++)
+                                            option(value=olist[i]['_id'])= olist[i].name
+                            tr
+                                td
+                                    button(id="addUser")= "添加用户"
+    script(src="../javascripts/admin.js")

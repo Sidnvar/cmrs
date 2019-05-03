@@ -1,10 +1,14 @@
-extends layout.install.pug
+extends layout.admin.pug
 
 block content  
-  div(class="install")
-      div(class="content md")
-        include db.install.pug
-
+  include nav.admin.pug
+  
+  div(class="page view clearfix")
+    div(class="page-header clearfix")
+      ol(class="heading")
+        li
+          a= "控制面板"
+    div(class="row")
 
   script(src="../javascripts/admin.js")
   //- h1= title

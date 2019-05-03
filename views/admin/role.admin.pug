@@ -1,0 +1,67 @@
+extends layout.admin.pug
+
+block content  
+  include nav.admin.pug
+  
+  div(class="page view clearfix")
+    div(class="page-header clearfix")
+      ol(class="heading")
+        li
+          a= title
+    div(class="row")
+        div(class="col-xs-8")
+            div(class="panel panel-default")
+                div(class="panel-body table-responsive")
+                    table(class="table table-hover")
+                        thead(class="text-center")
+                            tr
+                                th="名称"
+                                th="备注"
+                        tbody(class="text-center")
+                            tr
+                                td(class="role" data-role="role")= "角色管理权限"
+                                //- td= "无/可读/读写"
+                                td(class="role-group") 
+                                    div(class="btn-group btn-group-xs" role="group")
+                                        label()
+                                            input(type="radio" name="role" value="0" checked)
+                                            = "无"
+                                        label()
+                                            input(type="radio" name="role" value="1")
+                                            = "可读"
+                                        label()
+                                            input(type="radio" name="role" value="2")
+                                            = "读写"
+                            tr
+                                td(class="role" data-role="user")= "添加用户权限"
+                                td(class="role-group") 
+                                    div(class="btn-group btn-group-xs" role="group")
+                                        label()
+                                            input(type="radio" name="user" value="0" checked)
+                                            = "无"
+                                        label()
+                                            input(type="radio" name="user" value="1")
+                                            = "可读"
+                                        label()
+                                            input(type="radio" name="user" value="2")
+                                            = "读写"
+        div(class="col-xs-4")
+            div(class="panel panel-default")
+                div(class="panel-body table-responsive")
+                    table(class="table table-hover")
+                        thead(class="text-center")
+                            tr
+                                th="添加角色"
+                        tbody(class="text-center")
+                            tr
+                                td
+                                    label()= "角色名称:"
+                                    input(name="rolename")
+                            tr
+                                td
+                                    label()= "备注:"
+                                    input(name="remark")
+                            tr
+                                td
+                                    button(id="addRole")= "添加角色"
+  script(src="../javascripts/admin.js")

@@ -4,6 +4,7 @@ const dbService = require('../services/db.services')
 
 class commonService {
     constructor(){
+        // 链接数据库部分
         this._path = path.resolve(__dirname, '..') + '/db-lock.json'
 
         this.hasDbConfig().then(() => {
@@ -16,6 +17,9 @@ class commonService {
         }, () => {
 
         })
+
+        // 缓存部分
+        this.user = {}
     }
 
     // 判断本地有无数据库配置
